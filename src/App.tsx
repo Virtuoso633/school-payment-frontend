@@ -25,6 +25,12 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
+      // Add some Tailwind classes for testing
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <h1 className="text-3xl font-bold text-blue-600 underline p-6 bg-white rounded shadow-md">
+          Hello Tailwind!
+        </h1>
+      </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
