@@ -1,41 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from './components/layout/MainLayout';
+import TransactionsOverviewPage from './pages/TransactionsOverviewPage';
+import TransactionsBySchoolPage from './pages/TransactionsBySchoolPage';
+import TransactionStatusPage from './pages/TransactionStatusPage';
+import NotFoundPage from './pages/NotFoundPage'; // Optional
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      // Add some Tailwind classes for testing
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <h1 className="text-3xl font-bold text-blue-600 underline p-6 bg-white rounded shadow-md">
-          Hello Tailwind!
-        </h1>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      {/* Routes that use the MainLayout */}
+      <Route path="/" element={<MainLayout />}>
+        {/* Default route (index) within the layout */}
+        <Route index element={<TransactionsOverviewPage />} />
+        {/* Other routes */}
+        <Route path="school" element={<TransactionsBySchoolPage />} />
+        <Route path="status-check" element={<TransactionStatusPage />} />
+
+        {/* Catch-all route for 404 Not Found within the layout */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+
+      {/* You could define routes outside the MainLayout here if needed (e.g., a dedicated Login page) */}
+      {/* <Route path="/login" element={<LoginPage />} /> */}
+
+    </Routes>
+  );
 }
 
-export default App
+export default App;
